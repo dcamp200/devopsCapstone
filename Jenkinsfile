@@ -9,7 +9,7 @@ pipeline {
          }
          stage('Lint') {
               steps {
-                  sh . devopsCapstone/bin/activate
+                  sh '. devopsCapstone/bin/activate'
                   sh 'make lint'                  
               }
          }
