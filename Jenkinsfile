@@ -19,7 +19,7 @@ pipeline {
          }
          stage('Build Docker Image') {
               steps {                  
-                 docker build --tag=cmd-agent .
+                 sh 'docker build --tag=cmd-agent .'
               }
          } 
          
