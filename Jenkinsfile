@@ -4,12 +4,12 @@ pipeline {
          stage('Install dependencies') {
               steps {
                   sh 'make setup'
-                  sh '. devopsCapstone/bin/activate && pwd && make install'
+                  sh '. devops/bin/activate && pwd && make install'
               }
          }
          stage('Lint application files') {
               steps {
-                  sh '. devopsCapstone/bin/activate && pwd && make lint'                  
+                  sh '. devops/bin/activate && pwd && make lint'                  
               }
          }
          
