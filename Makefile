@@ -8,7 +8,7 @@
 setup:
 	# Create python virtualenv & source it
 	# source ~/.devops/bin/activate
-	python3 -m venv ~/.devopsCapstone
+	python3 -m venv devopsCapstone
 	. devopsCapstone/bin/activate
 
 install:
