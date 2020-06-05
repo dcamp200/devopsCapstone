@@ -16,6 +16,11 @@ pipeline {
               steps { 
                  aquaMicroscanner imageName: 'alpine:latest', notCompliesCmd: 'exit 1', onDisallowed: 'fail', outputFormat: 'html'
               }
+         }
+         stage('Build Docker Image') {
+              steps {                  
+                 docker build --tag=cmd-agent .
+              }
          } 
          
      }
