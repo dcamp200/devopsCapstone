@@ -9,8 +9,6 @@ env:
 	#Show information about environment
 	which python3
 	python3 --version
-	which pytest
-	which pylint
 
 setup:
 	# Create python virtualenv & source it
