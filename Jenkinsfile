@@ -7,7 +7,7 @@ pipeline {
                   sh '. devopsCapstone/bin/activate && pwd && make install'
               }
          }
-         stage('Lint') {
+         stage('Lint application files') {
               steps {
                   sh '. devopsCapstone/bin/activate && pwd && make lint'                  
               }
