@@ -3,7 +3,7 @@ pipeline {
      stages {
          stage('Install dependencies') {
               steps {
-                  sh 'pwd && deactivate && make setup'
+                  pwd && make env && make setup
                   sh '. devopsCapstone/bin/activate && pwd && make install'
               }
          }

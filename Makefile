@@ -5,6 +5,13 @@
 # app.py should pass pylint
 # (Optional) Build a simple integration test
 
+env:
+	#Show information about environment
+	which python3
+	python3 --version
+	which pytest
+	which pylint
+
 setup:
 	# Create python virtualenv & source it
 	# source ~/.devopsCapstone/bin/activate
