@@ -3,7 +3,7 @@ pipeline {
      stages {
          stage('Lint Python files') {
               steps {
-                  sh 'make lint'
+                  sh 'make all'
               }
          }
      }
