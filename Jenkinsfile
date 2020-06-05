@@ -4,7 +4,7 @@ pipeline {
          stage('Install dependencies') {
               steps {
                   sh 'make setup'
-                  sh 'make install'
+                  sh '. devopsCapstone/bin/activate && pwd && make install'
               }
          }
          stage('Lint') {
