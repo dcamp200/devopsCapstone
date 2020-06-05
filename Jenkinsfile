@@ -1,10 +1,18 @@
 pipeline {
      agent any
      stages {
-         stage('Lint Python files') {
+         stage('Install dependencies') {
               steps {
-                  sh 'make all'
+                  sh 'make setup'
+                  sh 'make install'
               }
          }
+         stage('Lint') {
+              steps {
+                  sh . devopsCapstone/bin/activate
+                  sh 'make lint'                  
+              }
+         }
+         
      }
 }
