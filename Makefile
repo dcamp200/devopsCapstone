@@ -9,6 +9,7 @@ setup:
 	# Create python virtualenv & source it
 	# source ~/.devops/bin/activate
 	python3 -m venv ~/.devopsCapstone
+	source ~/.devopsCapstone/bin/activate
 
 install:
 	# This should be run from inside a virtualenv
@@ -31,4 +32,4 @@ lint:
 	# This should be run from inside a virtualenv
 	pylint --disable=R,C,W1203,W1202 app.py
 
-all: install format lint test
+all: setup install format lint test
