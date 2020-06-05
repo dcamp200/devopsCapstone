@@ -12,6 +12,11 @@ pipeline {
                   sh '. devops/bin/activate && pwd && make lint'                  
               }
          }
+         stage('Security Scan') {
+              steps { 
+                 aquaMicroscanner imageName: 'alpine:latest', notCompliesCmd: 'exit 1', onDisallowed: 'fail'
+              }
+         } 
          
      }
 }
