@@ -8,17 +8,9 @@ LOG = create_logger(app)
 LOG.setLevel(logging.INFO)
 
 
-@app.route("/run", methods=["POST"])
-def run_command():
-    json_payload = request.json
-    LOG.info(f"JSON payload: \n{json_payload}")
-    command = json_payload["commandLine"]
-    logging.debug(f"Executing {command}")
-    process = subprocess.run(
-        command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False
-    )
-    LOG.info(process.stdout)
-    return jsonify(str(process.stdout))
+@app.route("/", methods=["GET"])
+def run_command():    
+    return 'Hello World!'
 
 
 if __name__ == "__main__":
