@@ -31,5 +31,15 @@ pipeline {
                  '''
               }
          }
+         stage('Deploy to Kubernetes cluster') {
+              steps {
+                   dir('k8s') {
+                    withAWS(credentials: 'aws-static', region: 'us-west-2') {
+                            sh "aws eks --region us-west-2 update-kubeconfig --name Udacity"
+                            sh 'kubectl apply -f deployment.yaml'
+                        }
+                    }
+              }
+         }
      }
 }
