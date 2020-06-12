@@ -1,5 +1,4 @@
-from flask import Flask, request, jsonify
-import subprocess
+from flask import Flask
 from flask.logging import create_logger
 import logging
 
