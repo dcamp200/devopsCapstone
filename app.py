@@ -9,7 +9,8 @@ LOG.setLevel(logging.INFO)
 
 @app.route("/", methods=["GET"])
 def run_command():    
-    return '<html><body>' \
+    return '<!DOCTYPE html>' \
+           '<html><body>' \
            '<p style="background-color:blue:color:white;">Hello World!</p>' \
            '</body></html>'
 
