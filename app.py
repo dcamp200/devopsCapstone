@@ -1,4 +1,4 @@
-from flask import Flask, json
+from flask import Flask
 from flask.logging import create_logger
 import logging
 
