@@ -21,7 +21,7 @@ spec:
       containers:
       - name: capstone
         image: 815161874902.dkr.ecr.us-west-2.amazonaws.com/udacity-devops:latest
-        imagePullPolicy: "Always"
+        imagePullPolicy: Always
         ports:
         - containerPort: 9000
 
