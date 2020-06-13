@@ -1,0 +1,63 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: 'EKS Managed Nodes (SSH access: true) [created by eksctl]'
+Mappings:
+  ServicePrincipalPartitionMap:
+    aws:
+      EC2: ec2.amazonaws.com
+      EKS: eks.amazonaws.com
+      EKSFargatePods: eks-fargate-pods.amazonaws.com
+    aws-cn:
+      EC2: ec2.amazonaws.com.cn
+      EKS: eks.amazonaws.com
+      EKSFargatePods: eks-fargate-pods.amazonaws.com
+    aws-us-gov:
+      EC2: ec2.amazonaws.com
+      EKS: eks.amazonaws.com
+      EKSFargatePods: eks-fargate-pods.amazonaws.com
+Resources:
+  ManagedNodeGroup:
+    Type: 'AWS::EKS::Nodegroup'
+    Properties:
+      ClusterName: Udacity
+      NodegroupName: udacity-standard-workers
+      ScalingConfig:
+        MinSize: 2
+        MaxSize: 2
+        DesiredSize: 2
+      Subnets: !Split 
+        - ','
+        - !ImportValue 'eksctl-Udacity-cluster::SubnetsPublic'
+      InstanceTypes:
+        - t3.micro
+      AmiType: AL2_x86_64
+      RemoteAccess:
+        Ec2SshKey: >-
+          eksctl-Udacity-nodegroup-udacity-standard-workers-d4:46:b9:f6:a8:7e:71:69:fd:01:1c:4d:10:2c:ba:a4
+      NodeRole: !GetAtt NodeInstanceRole.Arn
+      Labels:
+        alpha.eksctl.io/cluster-name: Udacity
+        alpha.eksctl.io/nodegroup-name: udacity-standard-workers
+      Tags:
+        alpha.eksctl.io/nodegroup-name: udacity-standard-workers
+        alpha.eksctl.io/nodegroup-type: managed
+  NodeInstanceRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action:
+              - 'sts:AssumeRole'
+            Effect: Allow
+            Principal:
+              Service:
+                - !FindInMap 
+                  - ServicePrincipalPartitionMap
+                  - !Ref 'AWS::Partition'
+                  - EC2
+        Version: 2012-10-17
+      ManagedPolicyArns:
+        - !Sub >-
+          arn:${AWS::Partition}:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+        - !Sub 'arn:${AWS::Partition}:iam::aws:policy/AmazonEKSWorkerNodePolicy'
+        - !Sub 'arn:${AWS::Partition}:iam::aws:policy/AmazonEKS_CNI_Policy'
+      Path: /
