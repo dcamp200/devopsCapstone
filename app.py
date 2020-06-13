@@ -11,8 +11,8 @@ LOG.setLevel(logging.INFO)
 def run_command():    
     return '''
            <!DOCTYPE html>
-           <html><body>
-           <p style="background-color:blue:color:white;">Hello World!</p>
+           <html><body style="background-color:green;">
+           <p style="color:white;">Hello World!</p>
            </body></html>
            '''
 
