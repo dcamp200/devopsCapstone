@@ -20,7 +20,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: capstone
-        image: 815161874902.dkr.ecr.us-west-2.amazonaws.com/udacity-devops:latest
+        image: 815161874902.dkr.ecr.us-west-2.amazonaws.com/udacity-devops:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 9000
