@@ -9,7 +9,9 @@ LOG.setLevel(logging.INFO)
 
 @app.route("/", methods=["GET"])
 def run_command():    
-    return 'Hello World!'
+    return '<html><body>' \
+           '<p style="background-color:blue:color:white;">Hello World!</p>' \
+           '</body></html>'
 
 
 if __name__ == "__main__":
