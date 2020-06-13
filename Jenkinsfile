@@ -1,14 +1,6 @@
 pipeline {
      agent any
      stages {
-         stage('Hashing images') {
-              steps {
-                  script {
-                       env.APP_VERSION = 1.2
-                  }
-              }
-            }
-         }
          stage('Install dependencies') {
               steps {
                   sh 'make setup'
@@ -27,15 +19,15 @@ pipeline {
          }
          stage('Build Docker Image') {
               steps {                  
-                 sh 'docker build --tag=udacity-devops:${env.APP_VERSION} .'
+                 sh 'docker build --tag=udacity-devops:1.2 .'
               }
          } 
          stage('Upload Docker Image to AWS registry') {
               steps {                  
                  sh '''
                     aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 815161874902.dkr.ecr.us-west-2.amazonaws.com
-                    docker tag udacity-devops:${env.APP_VERSION} 815161874902.dkr.ecr.us-west-2.amazonaws.com/udacity-devops:${env.APP_VERSION}
-                    docker push 815161874902.dkr.ecr.us-west-2.amazonaws.com/udacity-devops:1.1
+                    docker tag udacity-devops:1.2 815161874902.dkr.ecr.us-west-2.amazonaws.com/udacity-devops:1.2
+                    docker push 815161874902.dkr.ecr.us-west-2.amazonaws.com/udacity-devops:1.2
                  '''
               }
          }
