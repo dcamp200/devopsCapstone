@@ -19,15 +19,15 @@ pipeline {
          }
          stage('Build Docker Image') {
               steps {                  
-                 sh 'docker build --tag=udacity-devops:1.0 .'
+                 sh 'docker build --tag=udacity-devops:1.1 .'
               }
          } 
          stage('Upload Docker Image to AWS registry') {
               steps {                  
                  sh '''
                     aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 815161874902.dkr.ecr.us-west-2.amazonaws.com
-                    docker tag udacity-devops:1.0 815161874902.dkr.ecr.us-west-2.amazonaws.com/udacity-devops:1.0
-                    docker push 815161874902.dkr.ecr.us-west-2.amazonaws.com/udacity-devops:1.0
+                    docker tag udacity-devops:1.1 815161874902.dkr.ecr.us-west-2.amazonaws.com/udacity-devops:1.1
+                    docker push 815161874902.dkr.ecr.us-west-2.amazonaws.com/udacity-devops:1.1
                  '''
               }
          }
