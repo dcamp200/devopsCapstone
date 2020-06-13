@@ -17,6 +17,7 @@ spec:
       labels:
         app: capstone
     spec:
+      terminationGracePeriodSeconds: 30
       containers:
       - name: capstone
         image: 815161874902.dkr.ecr.us-west-2.amazonaws.com/udacity-devops:latest
